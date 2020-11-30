@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { generateCards } from "../../utils/deck";
-import Card from "../Card"
+import { useSelector, useDispatch } from "react-redux";
+
+import Card from "../Card";
 import "./style.css";
 
-const cardsList = [
-  "macaco.png",
-  "porquinho.png",
-  "tartaruga.png",
-  "tubarao.png",
-  "canguru.png",
-  "crocodilo.png",
-];
-
 const GridCard = () => {
-  const totalCards = cardsList.length * 2;
-  const [cards, setCards] = useState(generateCards(totalCards, cardsList));
+  const { deck } = useSelector((state) => state.deck);
+  const dispatch = useDispatch();
+
+  const [cards, setCards] = useState(deck);
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
 
@@ -41,13 +35,15 @@ const GridCard = () => {
     setSecondCard(null);
   }
 
-
   useEffect(() => {
     const onSuccess = () => {
       setCardCanFlip(firstCard.id, false);
       setCardCanFlip(secondCard.id, false);
       setCardIsFlipped(firstCard.id, true);
       setCardIsFlipped(secondCard.id, true);
+
+      dispatch({ type: "ADD_ATTEMPTS" });
+      dispatch({ type: "ADD_POINTS" });
       resetFirstAndSecondCards();
     };
 
@@ -62,12 +58,13 @@ const GridCard = () => {
         setCardIsFlipped(secondCardID, false);
       }, 1700);
 
+      dispatch({ type: "ADD_ATTEMPTS" });
       resetFirstAndSecondCards();
     };
 
     if (!firstCard || !secondCard) return;
     firstCard.imageURL === secondCard.imageURL ? onSuccess() : onFailure();
-  }, [firstCard, secondCard]);
+  }, [firstCard, secondCard, dispatch]);
 
   const onCardClick = (card) => {
     if (!card.canFlip) return;
