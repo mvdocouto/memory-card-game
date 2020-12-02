@@ -1,11 +1,11 @@
-export function addAttempts(){
-    return {
-      type: "ADD_ATTEMPTS",
-    };
+export function addAttempts() {
+  return {
+    type: "ASYNC_ADD_ATTEMPTS",
+  };
 }
 
 export function addPoints() {
   return {
-    type: "ADD_POINTS",
+    type: "ASYNC_ADD_POINTS",
   };
 }

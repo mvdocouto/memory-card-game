@@ -4,7 +4,10 @@ const INITIAL_STATE = {
   deck: generateCards(),
   totalPoints: 0,
   attempts: 0,
+  loading: false,
+  error: false,
 };
+
 export default function deck(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "ADD_ATTEMPTS":
