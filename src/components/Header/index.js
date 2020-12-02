@@ -7,8 +7,8 @@ function Header() {
   const { totalPoints, attempts } = useSelector((state) => state.deck);
   return (
     <div className="headerContainer">
-      <div class="hitsCount">Jogadas: {attempts}</div>
-      <div class="totalPoints">Pontuação: {totalPoints}</div>
+      <div className="hitsCount">Jogadas: {attempts}</div>
+      <div className="totalPoints">Pontuação: {totalPoints}</div>
     </div>
   );
 }

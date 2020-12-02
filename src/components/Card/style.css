@@ -54,7 +54,8 @@
 }
 
 .front {
-  background: #ccc;
+  background: #ffffff;
+  border: 1px solid #ccc;
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;
