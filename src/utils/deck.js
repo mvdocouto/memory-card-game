@@ -1,22 +1,6 @@
 import deepcopy from "deepcopy";
 import { v4 as uuidv4 } from "uuid";
 
-
-// const cardsList = [
-//   "macaco.png",
-//   "porquinho.png",
-//   "tartaruga.png",
-//   "tubarao.png",
-//   "canguru.png",
-//   "crocodilo.png",
-//   "chase.png",
-//   "marshall.png",
-//   "rocky.png",
-//   "rubble.png",
-//   "skye.png",
-//   "zuma.png"
-// ];
-
 const cardsList = [
   "chase.png",
   "marshall.jpg",
@@ -27,7 +11,6 @@ const cardsList = [
   "rider.png",
   "everest.png",
 ];
-
 
   const totalCards = cardsList.length * 2;
 
