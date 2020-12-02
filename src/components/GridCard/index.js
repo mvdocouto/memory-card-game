@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import { addAttempts, addPoints } from "../../actions/deck"
 import Card from "../Card";
 import "./style.css";
 
 const GridCard = () => {
   const { deck } = useSelector((state) => state.deck);
   const dispatch = useDispatch();
-
+  
   const [cards, setCards] = useState(deck);
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
@@ -30,10 +30,10 @@ const GridCard = () => {
     );
   };
 
-  function resetFirstAndSecondCards() {
+  const clearSelectedCards = () => {
     setFirstCard(null);
     setSecondCard(null);
-  }
+  };
 
   useEffect(() => {
     const onSuccess = () => {
@@ -42,9 +42,9 @@ const GridCard = () => {
       setCardIsFlipped(firstCard.id, true);
       setCardIsFlipped(secondCard.id, true);
 
-      dispatch({ type: "ADD_ATTEMPTS" });
-      dispatch({ type: "ADD_POINTS" });
-      resetFirstAndSecondCards();
+      dispatch(addAttempts());
+      dispatch(addPoints());
+      clearSelectedCards();
     };
 
     const onFailure = () => {
@@ -58,8 +58,8 @@ const GridCard = () => {
         setCardIsFlipped(secondCardID, false);
       }, 1700);
 
-      dispatch({ type: "ADD_ATTEMPTS" });
-      resetFirstAndSecondCards();
+      dispatch(addAttempts());
+      clearSelectedCards();
     };
 
     if (!firstCard || !secondCard) return;
